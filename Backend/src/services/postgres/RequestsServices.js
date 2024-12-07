@@ -239,7 +239,6 @@ class RequestsService {
       text: 'SELECT owner FROM requests WHERE id = $1',
       values: [id],
     };
-    console.log(query);
 
     const result = await this._pool.query(query);
     if (!result.rows.length) {
@@ -247,6 +246,7 @@ class RequestsService {
     }
 
     const request = result.rows[0];
+    console.log(request);
     if (request.owner !== owner) {
       throw new AuthorizationError('Anda tidak berhak mengakses resource ini');
     }
